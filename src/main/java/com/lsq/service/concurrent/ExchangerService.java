@@ -1,4 +1,4 @@
-package com.lsq.service.current;
+package com.lsq.service.concurrent;
 
 import java.util.concurrent.Exchanger;
 

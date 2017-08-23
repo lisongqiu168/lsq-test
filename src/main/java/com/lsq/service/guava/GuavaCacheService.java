@@ -26,7 +26,6 @@ public class GuavaCacheService {
 
 	public static void main(String[] args) throws ExecutionException,
 			InterruptedException {
-
 		LoadingCache<Long, AtomicLong> counter = CacheBuilder.newBuilder()
 				.expireAfterWrite(5, TimeUnit.SECONDS)
 				.build(new CacheLoader<Long, AtomicLong>() {

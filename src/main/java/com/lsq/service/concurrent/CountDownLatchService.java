@@ -1,4 +1,4 @@
-package com.lsq.service.current;
+package com.lsq.service.concurrent;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -9,10 +9,13 @@ public class CountDownLatchService {
 		CountDownLatch cdl = new CountDownLatch(2);
 
 		cdl.countDown();
-		System.out.println(cdl.getCount());
+		//System.out.println(cdl.getCount());
 		//cdl.countDown();
 		
+		//cdl.await();
+		
 		cdl.await();
+		
 
 		System.out.println("end");
 	}
