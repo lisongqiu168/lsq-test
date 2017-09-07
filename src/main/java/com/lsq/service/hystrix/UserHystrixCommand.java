@@ -15,17 +15,22 @@ import com.netflix.hystrix.HystrixCommandProperties;
 public class UserHystrixCommand extends HystrixCommand<String> {
 
 	public UserHystrixCommand() {
+		super(setter());
+	}
 
-		super(
-				Setter.withGroupKey(
-						HystrixCommandGroupKey.Factory
-								.asKey("UserHystrixCommand"))
-						/* 配置依赖超时时间,500毫秒 */
-						.andCommandPropertiesDefaults(
-								HystrixCommandProperties
-										.Setter()
-										.withExecutionIsolationThreadTimeoutInMilliseconds(
-												500)));
+	private static Setter setter() {
+		// 配置组
+		HystrixCommandGroupKey groupKey = HystrixCommandGroupKey.Factory
+				.asKey("UserHystrixCommand");
+
+		// 配置属性
+		HystrixCommandProperties.Setter properties = HystrixCommandProperties
+				.Setter()
+				.withExecutionIsolationThreadTimeoutInMilliseconds(500);// 配置依赖超时时间,500毫秒
+
+		HystrixCommand.Setter setter = HystrixCommand.Setter.withGroupKey(
+				groupKey).andCommandPropertiesDefaults(properties);
+		return setter;
 	}
 
 	@Override
@@ -58,6 +63,6 @@ public class UserHystrixCommand extends HystrixCommand<String> {
 		// 异步future调用
 		// String r2 = c.queue().get();
 		// System.out.println(r2);
-		
+
 	}
 }
