@@ -1,11 +1,11 @@
 package com.lsq.service.annotation;
 
 public class User {
-
+	@Param(desc = "姓名")
 	private String name = "张三";
+	@Param(desc = "年龄")
 	private Integer age;
 
-	@Param(desc = "姓名")
 	public String getName() {
 		return name;
 	}
@@ -14,7 +14,6 @@ public class User {
 		this.name = name;
 	}
 
-	@Param(desc = "年龄")
 	public Integer getAge() {
 		return age;
 	}
