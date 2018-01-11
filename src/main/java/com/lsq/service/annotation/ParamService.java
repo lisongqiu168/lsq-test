@@ -3,23 +3,31 @@ package com.lsq.service.annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.commons.lang.StringUtils;
-
 public class ParamService {
 
 	public static void main(String[] args) throws IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
 		User user = new User();
+		user.setAge(1);
 
 		Field[] fields = user.getClass().getDeclaredFields();
 		for (Field f : fields) {
-			Param p = f.getAnnotation(Param.class);
-			if (p != null) {
-				f.setAccessible(true);
-				String s = (String) f.get(user);
-				if (StringUtils.isEmpty(s)) {
-					System.out.println(p.desc() + "不能为空");
+			ParamValidate p = f.getAnnotation(ParamValidate.class);
+			if (p == null) {
+				continue;
+			}
+			f.setAccessible(true);
+			System.out.println(f.getType().getSimpleName());
+			System.out.println(f.getName());
+			Object o = f.get(user);
+			if (o == null) {
+				System.out.println(p.desc() + p.exception());
+			}
+			if (o instanceof Integer) {
+				Integer age = (Integer) o;
+				if (age >= 100) {
+					System.out.println(p.desc() + p.exception());
 				}
 			}
 		}

@@ -12,7 +12,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-@Service
 public class GuavaCacheService {
 
 	public GuavaCacheService() {

@@ -7,8 +7,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Param {
+public @interface ParamValidate {
 
 	public String desc() default "";
+
+	public String exception() ;
 
 }

@@ -1,10 +1,10 @@
 package com.lsq.service.annotation;
 
 public class User {
-	@Param(desc = "姓名")
+	@ParamValidate(desc = "姓名", exception = "不能为空")
 	private String name = "张三";
-	@Param(desc = "年龄")
-	private Integer age;
+	@ParamValidate(desc = "年龄", exception = "必须小于100")
+	private int age = 100;
 
 	public String getName() {
 		return name;
@@ -14,11 +14,11 @@ public class User {
 		this.name = name;
 	}
 
-	public Integer getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
