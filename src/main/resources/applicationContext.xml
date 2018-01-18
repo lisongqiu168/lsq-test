@@ -27,6 +27,7 @@
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
+	
 	<!-- kafka -->
 	<!-- 定义producer的参数 -->
 	<bean id="producerProperties" class="java.util.HashMap">
@@ -66,7 +67,7 @@
 
 
 
-	<!-- consumer配置 -->
+	<!-- consumer配置 --> 
 	<!-- 定义consumer的参数 -->
 	<bean id="consumerProperties" class="java.util.HashMap">
 		<constructor-arg>
