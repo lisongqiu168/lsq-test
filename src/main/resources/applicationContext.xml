@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/data/mongo
-    	http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+    	http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<mvc:annotation-driven />
 
@@ -22,14 +22,18 @@
 
 
 	<!-- mongodb -->
-	<mongo:mongo host="192.168.0.23" port="27017" />
+	<!-- 单机 -->
+	<!-- <mongo:mongo host="192.168.0.23" port="27017" /> -->
+	<!-- 集群 -->
+	<mongo:mongo replica-set="192.168.0.23:27017">
+	</mongo:mongo>
+
 	<mongo:db-factory dbname="mongotest" mongo-ref="mongo" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
 
-	<!-- kafka
-	定义producer的参数 -->
+	<!-- kafka 定义producer的参数 -->
 	<bean id="producerProperties" class="java.util.HashMap">
 		<constructor-arg>
 			<map>
@@ -67,8 +71,7 @@
 
 
 
-	<!-- consumer配置
-	定义consumer的参数 -->
+	<!-- consumer配置 定义consumer的参数 -->
 	<bean id="consumerProperties" class="java.util.HashMap">
 		<constructor-arg>
 			<map>
@@ -109,6 +112,6 @@
 		init-method="doStart">
 		<constructor-arg ref="consumerFactory" />
 		<constructor-arg ref="containerProperties_trade" />
-	</bean> 
+	</bean>
 
 </beans>
