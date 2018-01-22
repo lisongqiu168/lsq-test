@@ -31,18 +31,18 @@ public class KafkaConsumerServer implements MessageListener<String, String> {
         String value = record.value();
         long offset = record.offset();
         int partition = record.partition();
-        mongoTemplate.insert(JSON.parseObject(value, LogInfo.class));
+       // mongoTemplate.insert(JSON.parseObject(value, LogInfo.class));
         System.out.println("-------------topic:" + topic);
         System.out.println("-------------value:" + value);
         System.out.println("-------------key:" + key);
         System.out.println("-------------offset:" + offset);
         System.out.println("-------------partition:" + partition);
         System.out.println("~~~~~~~~~~~~~kafkaConsumer消费结束~~~~~~~~~~~~~");
-        List<LogInfo> list = mongoTemplate.findAll(LogInfo.class);
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSSS");
-        for (LogInfo logInfo2 : list) {
-            System.out.println(logInfo2.getMethodName() + "=" + fmt.format(logInfo2.getStartTime()) + "=" + fmt.format(logInfo2.getEndTime()) + "="
-                    + logInfo2.getExeTime());
-        }
+//        List<LogInfo> list = mongoTemplate.findAll(LogInfo.class);
+//        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSSS");
+//        for (LogInfo logInfo2 : list) {
+//            System.out.println(logInfo2.getMethodName() + "=" + fmt.format(logInfo2.getStartTime()) + "=" + fmt.format(logInfo2.getEndTime()) + "="
+//                    + logInfo2.getExeTime());
+//        }
     }
 }

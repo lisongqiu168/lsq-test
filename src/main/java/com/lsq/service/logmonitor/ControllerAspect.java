@@ -27,7 +27,7 @@ public class ControllerAspect {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	@Around("execution(* com.lsq.controller.*.*(..))")
+	//@Around("execution(* com.lsq.controller.*.*(..))")
 	public Object intercepetService(ProceedingJoinPoint jp) throws Throwable {
 		long startTime = System.currentTimeMillis();
 		Object obj = jp.proceed();
