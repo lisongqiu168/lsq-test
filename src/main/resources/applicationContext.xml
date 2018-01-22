@@ -107,11 +107,18 @@
 	</bean>
 
 	<!-- 创建messageListenerContainer bean，使用的时候，只需要注入这个bean -->
-	<bean id="messageListenerContainer_trade"
-		class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
+	<!-- 单线程 -->
+	<!-- <bean id="messageListenerContainer_trade" class="org.springframework.kafka.listener.KafkaMessageListenerContainer" 
+		init-method="doStart"> <constructor-arg ref="consumerFactory" /> <constructor-arg 
+		ref="containerProperties_trade" /> </bean> -->
+
+	<!-- 多线程 -->
+	<bean id="concurrentMessageListenerContainer"
+		class="org.springframework.kafka.listener.ConcurrentMessageListenerContainer"
 		init-method="doStart">
 		<constructor-arg ref="consumerFactory" />
 		<constructor-arg ref="containerProperties_trade" />
+		<property name="concurrency" value="10"></property>
 	</bean>
 
 </beans>

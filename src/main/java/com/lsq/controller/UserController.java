@@ -27,7 +27,7 @@ public class UserController {
 			UserParam user) {
 		// kafka
 		ListenableFuture<SendResult<String, String>> r = kafkaTemplate
-				.send("test_topic","test_value");
+				.sendDefault("test_value");
 //		String s = com.alibaba.fastjson.JSON.toJSONString(user);
 //		mongoTemplate.insert(
 //				com.alibaba.fastjson.JSON.parseObject(s, UserParam.class));
