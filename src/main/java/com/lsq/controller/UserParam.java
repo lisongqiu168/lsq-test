@@ -14,4 +14,5 @@ public class UserParam implements java.io.Serializable{
 		this.userId = userId;
 	}
 
+
 }
